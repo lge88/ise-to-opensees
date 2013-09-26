@@ -1,10 +1,20 @@
 
-var domainToOpenSees = require( 'ise-to-opensees' ).domainToOpenSees;
-var analysisToOpenSees = require( 'ise-to-opensees' ).analysisToOpenSees;
-var toOpenSees = require( 'ise-to-opensees' ).toOpenSees;
 var expect = require( 'expect.js' );
 
 describe( 'Unit test', function() {
+
+  var toOpenSees = require( 'ise-to-opensees' );
+  var domainToOpenSees = function( json ) {
+    return toOpenSees( json, {
+      filter: function( x ) { return x !== 'analysis'; }
+    } );
+  };
+
+  var analysisToOpenSees = function( json ) {
+    return toOpenSees( json, {
+      filter: function( x ) { return x === 'analysis'; }
+    } );
+  };
 
   function runTest( key, data ) {
     data
@@ -142,7 +152,7 @@ describe( 'Unit test', function() {
           P: 1, Mz: 3, section_id: 5, T:2
         },
         [ 'section Aggregator 7 1 P 3 Mz 2 T -section 5' ]
-      ],
+      ]
     ] );
 
   } );
@@ -221,7 +231,7 @@ describe( 'Unit test', function() {
           transform_id: 1
         },
         [ 'element dispBeamColumn 101 4 5 3 5001 1']
-      ],
+      ]
     ] );
 
   } );
@@ -283,7 +293,7 @@ describe( 'Unit test', function() {
         { id: 2, node_id: 3, type: 'NodalDisplacement', value: [ 100, 20, -50 ] },
         { id: 3, element_id: 3, type: 'BeamUniform', Wy: 2, Wz: 2 },
         { id: 4, element_id: [ 2, 4, 5 ], type: 'BeamPoint', Py: 2, xL: 0.2 },
-        { id: 5, element_id: [ 4, 5 ], type: 'BeamPoint', Py: 2, Pz: 3, xL: 0.2 },
+        { id: 5, element_id: [ 4, 5 ], type: 'BeamPoint', Py: 2, Pz: 3, xL: 0.2 }
       ],
       patterns: [
         { id: 1, type: 'Plain', time_series_id: 1, load_id: [ 1, 2, 3, 4, 5 ] },

@@ -16,6 +16,7 @@
     "lib/converters/sections.js",
     "lib/converters/materials.js",
     "lib/converters/elements.js",
+    "lib/converters/model_builder.js",
     "lib/converters/index.js",
     "lib/converters/single_point_constraints.js",
     "lib/converters/patterns.js",

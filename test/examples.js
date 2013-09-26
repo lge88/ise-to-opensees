@@ -1,9 +1,21 @@
 
-var domainToOpenSees = require( 'ise-to-opensees' ).domainToOpenSees;
-var toOpenSees = require( 'ise-to-opensees' ).toOpenSees;
 var expect = require( 'expect.js' );
 
 describe( 'Examples', function() {
+
+  var toOpenSees = require( 'ise-to-opensees' );
+
+  var domainToOpenSees = function( json ) {
+    return toOpenSees( json, {
+      filter: function( x ) { return x !== 'analysis'; }
+    } );
+  };
+
+  var analysisToOpenSees = function( json ) {
+    return toOpenSees( json, {
+      filter: function( x ) { return x === 'analysis'; }
+    } );
+  };
 
   it(
     'http://opensees.berkeley.edu/wiki/index.php/Basic_Truss_Example',
@@ -75,17 +87,12 @@ describe( 'Examples', function() {
         'analysis Static'
       ];
 
-      console.log( toOpenSees( ex, {
-        filter: function( x ) {
-          return x in {
-            elements: true,
-            nodes: true
-          };
-        }
-      } ) );
+      expect( toOpenSees( ex, {
+        fields: [ 'nodes', 'single_point_constraints', 'elements' ],
+        join_char: '\n'
+      } ) ).to.eql( exList.slice( 3, 13 ).join( '\n' ) );
 
-
-      expect( toOpenSees( ex ) ).to.eql( exList.join( '\n' ) );
+      expect( toOpenSees( ex, { join_char: '\n' } ) ).to.eql( exList.join( '\n' ) );
     } );
 
 } );

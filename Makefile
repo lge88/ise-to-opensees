@@ -25,8 +25,11 @@ clean:
 component.json: $(SRC)
 	@node _ise_/build/auto-update-file-list.js
 
-test: build
+brower-test: build
 	$(OPEN) test/index.html
+
+test:
+	NODE_PATH=.. mocha test
 
 demo: build
 	$(OPEN) examples/index.html

@@ -1,0 +1,12 @@
+{
+  "name": "ise-to-opensees",
+  "version": "0.0.1",
+  "dependencies": {
+    "object-to-list": "git+https://github.com/lge88/object-to-list.git",
+    "flatten": "git+https://github.com/lge88/flatten.git"
+  },
+  "devDependencies": {
+    "expect.js": "*"
+  },
+  "main": "lib/index.js"
+}
