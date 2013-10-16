@@ -197,19 +197,19 @@ describe( 'Unit test', function() {
   it( '#elements', function() {
     runTest( 'elements', [
       [
-        { id: 1, type: 'truss', node_id: [ 2, 3 ], A: 20, material_id: 1 },
+        { id: 1, type: 'truss', nodes_id: [ 2, 3 ], A: 20, material_id: 1 },
         [ 'element truss 1 2 3 20 1' ]
       ],
       [
         {
-          id: 1, type: 'trussSection', node_id: [ 2, 3 ],
+          id: 1, type: 'trussSection', nodes_id: [ 2, 3 ],
           section_id: 4, rho: 0.5, doRayleigh: 1
         },
         [ 'element trussSection 1 2 3 4 -rho 0.5 -doRayleigh 1' ]
       ],
       [
         {
-          id: 1, type: 'elasticBeamColumn', node_id: [ 2, 3 ],
+          id: 1, type: 'elasticBeamColumn', nodes_id: [ 2, 3 ],
           A: 1, E: 2, G: 3, J: 4,
           Iy: 5, Iz: 6, transform_id: 7,
           massDensity: 0.234
@@ -218,7 +218,7 @@ describe( 'Unit test', function() {
       ],
       [
         {
-          id: 101, type: 'nonlinearBeamColumn', node_id: [ 4, 5 ],
+          id: 101, type: 'nonlinearBeamColumn', nodes_id: [ 4, 5 ],
           numOfIntegrationPoints: 3, section_id: 5001,
           transform_id: 1
         },
@@ -226,7 +226,7 @@ describe( 'Unit test', function() {
       ],
       [
         {
-          id: 101, type: 'dispBeamColumn', node_id: [ 4, 5 ],
+          id: 101, type: 'dispBeamColumn', nodes_id: [ 4, 5 ],
           numOfIntegrationPoints: 3, section_id: 5001,
           transform_id: 1
         },

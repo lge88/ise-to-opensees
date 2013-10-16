@@ -37,9 +37,9 @@ describe( 'Examples', function() {
           { id: 4, position:{ x:  72, y: 96 } }
         ],
         elements: [
-          { id: 1, type: 'truss', node_id: [ 1, 4 ], A: 10, material_id: 1 },
-          { id: 2, type: 'truss', node_id: [ 2, 4 ], A:  5, material_id: 1 },
-          { id: 3, type: 'truss', node_id: [ 3, 4 ], A:  5, material_id: 1 }
+          { id: 1, type: 'truss', nodes_id: [ 1, 4 ], A: 10, material_id: 1 },
+          { id: 2, type: 'truss', nodes_id: [ 2, 4 ], A:  5, material_id: 1 },
+          { id: 3, type: 'truss', nodes_id: [ 3, 4 ], A:  5, material_id: 1 }
         ],
         single_point_constraints: [
           { id: 1, node_id: 1, is_prescribed: [ 1, 1 ] },
