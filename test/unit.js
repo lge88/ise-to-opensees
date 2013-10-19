@@ -63,6 +63,46 @@ describe( 'Unit test', function() {
         [ 'uniaxialMaterial Elastic 1 3000' ]
       ],
       [
+        {
+          id: 1, type: 'uniaxial.Steel01',
+          Fy: 1000, E0: 2000, b: 0.02
+        },
+        [ 'uniaxialMaterial Steel01 1 1000 2000 0.02' ]
+      ],
+      [
+        {
+          id: 1, type: 'uniaxial.Steel02',
+          Fy: 1000, E0: 2000, b: 0.02,
+          R0: 15, cR1: 0.925, cR2: 0.15,
+          a1: 0.1, a2: 0.1, a3: 0.1, a4: 0.1,
+          sigInit: 0.2
+        },
+        [ 'uniaxialMaterial Steel02 1 1000 2000 0.02 15 0.925 0.15 0.1 0.1 0.1 0.1 0.2' ]
+      ],
+      [
+        {
+          id: 1, type: 'uniaxial.Concrete01',
+          fpc: -4,
+          epsc0: -0.02,
+          fpcu: 0.1,
+          epsU: 0.005
+        },
+        [ 'uniaxialMaterial Concrete01 1 -4 -0.02 0.1 0.005' ]
+      ],
+      [
+        {
+          id: 1, type: 'uniaxial.Concrete02',
+          fpc: -4,
+          epsc0: -0.02,
+          fpcu: 0.1,
+          epsU: 0.005,
+          lambda: 0.01,
+          ft: 0.02,
+          Ets: 0.03
+        },
+        [ 'uniaxialMaterial Concrete02 1 -4 -0.02 0.1 0.005 0.01 0.02 0.03' ]
+      ],
+      [
         { id: 2, type: 'nD.ElasticIsotropic', E: 3000, v: 0.3 },
         [ 'nDMaterial ElasticIsotropic 2 3000 0.3' ]
       ],
@@ -231,6 +271,49 @@ describe( 'Unit test', function() {
           transform_id: 1
         },
         [ 'element dispBeamColumn 101 4 5 3 5001 1']
+      ],
+      [
+        {
+          id: 101, type: 'quad', nodes_id: [ 4, 5, 6, 7 ],
+          thick: 3,
+          subType: 'PlainStrain',
+          material_id: 5001,
+          pressure: 1.1,
+          rho: 0.2,
+          b1: 0.1,
+          b2: 0.2
+        },
+        [ 'element quad 101 4 5 6 7 3 PlainStrain 5001 1.1 0.2 0.1 0.2']
+      ],
+      [
+        {
+          id: 101, type: 'tri31', nodes_id: [ 5, 6, 7 ],
+          thick: 0.1,
+          subType: 'PlainStress',
+          material_id: 5001,
+          // pressure: 1.1,
+          // rho: 0.2,
+          // b1: 0.1,
+          // b2: 0.2
+        },
+        [ 'element tri31 101 5 6 7 0.1 PlainStress 5001']
+      ],
+      [
+        {
+          id: 101, type: 'ShellMITC4', nodes_id: [ 4, 5, 6, 7 ],
+          section_id: 5
+        },
+        [ 'element ShellMITC4 101 4 5 6 7 5']
+      ],
+      [
+        {
+          id: 1, type: 'stdBrick', nodes_id: [ 1, 2, 3, 4, 5, 6, 7, 8 ],
+          material_id: 5,
+          b1: 0.1,
+          b2: 0.2,
+          b3: 0.3,
+        },
+        [ 'element stdBrick 1 1 2 3 4 5 6 7 8 5 0.1 0.2 0.3']
       ]
     ] );
 

@@ -28,7 +28,7 @@ component.json: $(SRC)
 brower-test: build
 	$(OPEN) test/index.html
 
-test:
+test: build
 	NODE_PATH=.. mocha test
 
 demo: build
